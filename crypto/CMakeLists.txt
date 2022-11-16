@@ -91,7 +91,7 @@ function(perlasm dest src)
 endfunction()
 
 add_subdirectory(fipsmodule)
-add_subdirectory(test)
+#add_subdirectory(test)
 
 if(FIPS_DELOCATE OR FIPS_SHARED)
   SET_SOURCE_FILES_PROPERTIES(fipsmodule/bcm.o PROPERTIES EXTERNAL_OBJECT true)
@@ -488,7 +488,7 @@ endif()
 # urandom_test is a separate binary because it needs to be able to observe the
 # PRNG initialisation, which means that it can't have other tests running before
 # it does.
-add_executable(
+#[[add_executable(
   urandom_test
 
   fipsmodule/rand/urandom_test.cc
@@ -577,4 +577,4 @@ target_link_libraries(crypto_test test_support_lib boringssl_gtest crypto)
 if(WIN32)
   target_link_libraries(crypto_test ws2_32)
 endif()
-add_dependencies(all_tests crypto_test)
+add_dependencies(all_tests crypto_test)]]

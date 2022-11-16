@@ -582,8 +582,8 @@ endif()
 
 # Add minimal googletest targets. The provided one has many side-effects, and
 # googletest has a very straightforward build.
-add_library(boringssl_gtest third_party/googletest/src/gtest-all.cc)
-target_include_directories(boringssl_gtest PRIVATE third_party/googletest)
+#add_library(boringssl_gtest third_party/googletest/src/gtest-all.cc)
+#target_include_directories(boringssl_gtest PRIVATE third_party/googletest)
 
 include_directories(third_party/googletest/include)
 
@@ -609,15 +609,15 @@ add_custom_command(
   DEPENDS util/embed_test_data.go ${CRYPTO_TEST_DATA}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(crypto_test_data OBJECT crypto_test_data.cc)
+#add_library(crypto_test_data OBJECT crypto_test_data.cc)
 
 add_subdirectory(crypto)
 add_subdirectory(ssl)
-add_subdirectory(ssl/test)
-add_subdirectory(tool)
-add_subdirectory(util/fipstools)
-add_subdirectory(util/fipstools/acvp/modulewrapper)
-add_subdirectory(decrepit)
+#add_subdirectory(ssl/test)
+#add_subdirectory(tool)
+#add_subdirectory(util/fipstools)
+#add_subdirectory(util/fipstools/acvp/modulewrapper)
+#add_subdirectory(decrepit)
 
 if(FUZZ)
   if(LIBFUZZER_FROM_DEPS)
@@ -643,7 +643,7 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   set(HANDSHAKER_ARGS "-handshaker-path" $<TARGET_FILE:handshaker>)
 endif()
-
+#[[
 if(FIPS)
   add_custom_target(
     acvp_tests
@@ -677,7 +677,7 @@ add_custom_target(
               ${HANDSHAKER_ARGS} ${RUNNER_ARGS}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     DEPENDS all_tests bssl_shim handshaker fips_specific_tests_if_any
-    USES_TERMINAL)
+    USES_TERMINAL)]]
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
